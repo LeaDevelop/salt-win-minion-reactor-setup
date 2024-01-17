@@ -12,7 +12,8 @@ Salt project official documentation: https://docs.saltproject.io/salt/user-guide
 # Beacons 
 Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html
 
-# Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html
+# Reactor
+Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html
 
 
 
