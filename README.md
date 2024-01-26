@@ -31,4 +31,4 @@ Useful links:
 5Watch the state.event you'll see scheduler job first, following beacon and reactor
 
 (!) Help yourself also with the minion log that is by default located in:
-'C:\ProgramData\Salt Project\Salt\var\log\salt\minion'
+`'C:\ProgramData\Salt Project\Salt\var\log\salt\minion'`
