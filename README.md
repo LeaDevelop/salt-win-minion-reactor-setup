@@ -22,7 +22,7 @@ Reactor: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.h
 ## How to use
 I set structure of directories but we all most likely have different setups, there are parts missing potentially. I made sure essentials for scheduler, beacon and reactor are there and they help you understand where should they be configured.
 
-TODO insert flow chart
+![scheduler-beacon-reactor_LeaDevelop.png](readme-assets/scheduler-beacon-reactor_LeaDevelop.png)
 
 ## Verify all is running as expected
 1. On salt master start `salt-run state.event pretty=true`
