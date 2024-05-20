@@ -19,6 +19,11 @@ Reactor: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.h
 -  https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
 -  https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-userlocale
 
+## How to use
+I set structure of directories but we all most likely have different setups, there are parts missing potentially. I made sure essentials for scheduler, beacon and reactor are there and they help you understand where should they be configured.
+
+TODO insert flow chart
+
 ## Verify all is running as expected
 1. On salt master start `salt-run state.event pretty=true`
 2. To test you can set scheduler and beacon interval to 20s both
