@@ -36,7 +36,7 @@ Reactor: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.h
 ## Credits
 Saltstack is available at: https://github.com/saltstack/salt / https://www.saltprojectstore.io <br>
 License: https://github.com/saltstack/salt?tab=Apache-2.0-1-ov-file <br>
-Contributors to what I used in this example: https://github.com/saltstack/salt/graphs/contributors
+Contributors to what I used in this example: https://github.com/saltstack/salt/graphs/contributors<br>
 Kudos to Salstack Windows workgroup for helping me out through this journey!<br>
 Powershell scripts are my own creation.
 
