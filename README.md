@@ -9,9 +9,18 @@ Locale region format is simple example on how to adjust configuration of minion 
 Scheduler's job starts the powershell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
 
 ## Salt project official documentation used for this setup 
-Scheduler: https://docs.saltproject.io/salt/user-guide/en/latest/topics/scheduler.html <br>
-Beacons: https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html <br>
-Reactor: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html <br>
+Scheduler:
+
+- https://docs.saltproject.io/salt/user-guide/en/latest/topics/scheduler.html <br>
+- https://docs.saltproject.io/en/latest/ref/states/all/salt.states.schedule.html<br>
+
+Beacons: 
+- https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html <br>
+- https://docs.saltproject.io/en/latest/ref/states/all/salt.states.beacon.html <br>
+
+Reactor: 
+- https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html <br>
+- https://docs.saltproject.io/en/latest/topics/reactor/<br>
 
 ## Other useful links:
 - https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.reg.html
