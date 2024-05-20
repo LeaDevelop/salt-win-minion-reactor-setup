@@ -2,22 +2,18 @@
 
 Setup is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation.
 
+Locale region format is simple example on how to adjust configuration of minion with Windows OS, there is reg specific module that will help you getting that running via Salt. I'm using powershell script approach and using cmd.script function in the salt state file.
+
 > ⚠ To make Scheduler, Beacon, Reactor trio working: salt-minion must use 'Log On' service property and fill in the credentials into This account option. If you don't set that then beacon will not work and consequently reactor as well.
  
 Scheduler's job starts the powershell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
 
-## Scheduler 
-Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/scheduler.html
+## Salt project official documentation used for this setup 
+Scheduler: https://docs.saltproject.io/salt/user-guide/en/latest/topics/scheduler.html <br>
+Beacons: https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html <br>
+Reactor: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html <br>
 
-## Beacons 
-Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html
-
-## Reactor
-Salt project official documentation: https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html
-
-Locale region format is simple example on how to adjust configuration of minion with Windows OS, there is reg specific module that will help you getting that running via Salt. I'm using powershell script approach and using cmd.script function in the salt state file.
-
-## Useful links:
+## Other useful links:
 - https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.reg.html
 - https://docs.saltproject.io/en/latest/ref/states/all/salt.states.cmd.html
 -  https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
@@ -45,4 +41,4 @@ Kudos to Salstack Windows workgroup for helping me out through this journey!<br>
 Powershell scripts are my own creation.
 
 ## Disclaimers
-The use of scripts or shared content is solely at your own risk. I do not guarantee its accuracy, reliability, or suitability for your specific needs. No responsibility is taken for any damages or losses that may result from its use. It is recommended that you carefully review and test the content before implementation!
+The use of scripts or shared content is solely at your own risk. I do not guarantee its accuracy, reliability, or suitability for your specific needs. No responsibility is taken for any damages or losses that may result from its use. It is recommended that you carefully review and test the content before implementation!<br><br>
