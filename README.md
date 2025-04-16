@@ -1,4 +1,4 @@
-# Saltstack Windows - Reactor setup with scheduler and beacon
+# Salt - Windows minion reactor setup with scheduler and beacon
 
 Setup is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation.
 
