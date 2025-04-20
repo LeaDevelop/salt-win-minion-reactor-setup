@@ -8,8 +8,6 @@ Locale region format is simple example on how to adjust configuration of minion 
  
 Scheduler's job starts the powershell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
 
-ℹ️ I also adapted source of watchdog.py
-
 ## Salt project official documentation used for this setup 
 Scheduler:
 
@@ -51,9 +49,8 @@ I set structure of directories but we all most likely have different setups, the
 ## Credits
 Saltstack is available at: https://github.com/saltstack/salt / https://www.saltprojectstore.io <br>
 License: https://github.com/saltstack/salt?tab=Apache-2.0-1-ov-file <br>
-Contributors to what I used in this example: https://github.com/saltstack/salt/graphs/contributors<br>
 Kudos to Salstack Windows workgroup for helping me out through this journey!<br>
-Powershell scripts are my own creation.
+PowerShell scripts are my own creation.
 
 ## Disclaimers
 The use of scripts or shared content is solely at your own risk. I do not guarantee its accuracy, reliability, or suitability for your specific needs. No responsibility is taken for any damages or losses that may result from its use. It is recommended that you carefully review and test the content before implementation!<br><br>
