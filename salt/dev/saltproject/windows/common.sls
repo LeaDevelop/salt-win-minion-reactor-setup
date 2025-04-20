@@ -15,13 +15,6 @@ ensure-pip-version:
 #  cmd.run:
 #    - name: C:\Python313\python.exe -m pip install --upgrade pip==25.0.1
 
-# Install Watchdog module - required for Beacon
-watchdog:
-  pip.installed:
-    - name: watchdog == 6.0.0
-    - require:
-      - ensure-pip-version
-
 # Install Beacons config to a minion - required for Beacon
 # https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html
 salt-beacons-cfg:
@@ -53,7 +46,6 @@ locale-region-status-scheduled-job:
     - name: locale-region-status
     - jid_include: true
     - maxrunning: 1
-
 
 
 # Salty way for first time apply expected values for locale region format into windows registry hive key
