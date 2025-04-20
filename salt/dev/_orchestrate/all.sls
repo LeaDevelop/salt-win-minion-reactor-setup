@@ -1,4 +1,4 @@
-# https://docs.saltproject.io/en/3005/faq.html#waiting-for-minions-to-come-back-online
+# https://docs.saltproject.io/en/3007/faq.html#waiting-for-minions-to-come-back-online
 # Following is simply an example
 
 {% set current_env = 'dev' %}
