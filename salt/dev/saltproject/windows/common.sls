@@ -1,7 +1,7 @@
 # Install pip
-ensure-pip-version:
-  pip.installed:
-    - name: pip == 25.0.1
+#ensure-pip-version:
+#  pip.installed:
+#    - name: pip == 25.0.1
 # If the above not working, following will:
 #chocolatey:
 #  module.run:
@@ -21,8 +21,6 @@ salt-beacons-cfg:
   file.managed:
     - name: 'C:\ProgramData\Salt Project\Salt\conf\minion.d\beacons.conf'
     - source: salt://beacons/beacons.conf
-    - require:
-        - watchdog
 
 # Salt minion service will restart, if watched file has changes
 salt-minion-service:
