@@ -1,7 +1,7 @@
 # Install pip
 ensure-pip-version:
   pip.installed:
-    - name: pip == 24.0.0
+    - name: pip == 25.0.1
 # If the above not working, following will:
 #chocolatey:
 #  module.run:
@@ -9,16 +9,16 @@ ensure-pip-version:
 #python:
 #  chocolatey.installed:
 #    - name: python
-#    - version: 3.12.3
+#    - version: 3.13.3
 #    - package_args: -y
 #pip:
 #  cmd.run:
-#    - name: C:\Python312\python.exe -m pip install --upgrade pip==24.0
+#    - name: C:\Python313\python.exe -m pip install --upgrade pip==25.0.1
 
 # Install Watchdog module - required for Beacon
 watchdog:
   pip.installed:
-    - name: watchdog == 4.0.0
+    - name: watchdog == 6.0.0
     - require:
       - ensure-pip-version
 
