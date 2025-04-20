@@ -43,8 +43,7 @@ I set structure of directories but we all most likely have different setups, the
 ℹ Help yourself also with the minion log that is by default located in:
 `C:\ProgramData\Salt Project\Salt\var\log\salt\minion`
 
-> Last time tested (14.04.2024) on master and minion, that were based on versions: <br>
-> - [3006.4](https://docs.saltproject.io/en/latest/topics/releases/3006.4.html#salt-3006-4-release-notes)
+> Last time tested (20.04.2025) on master and minion, that were based on versions: <br>
 > - [3007.0](https://docs.saltproject.io/en/latest/topics/releases/3007.0.html#salt-3007-0-release-notes)
 
 ## Credits
