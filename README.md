@@ -8,6 +8,8 @@ Locale region format is simple example on how to adjust configuration of minion 
  
 Scheduler's job starts the powershell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
 
+ℹ️ I also adapted source of watchdog.py
+
 ## Salt project official documentation used for this setup 
 Scheduler:
 
