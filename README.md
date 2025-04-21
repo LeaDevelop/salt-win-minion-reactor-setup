@@ -2,11 +2,11 @@
 
 Setup is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation.
 
-Locale region format is simple example on how to adjust configuration of minion with Windows OS, there is reg specific module that will help you getting that running via Salt. I'm using powershell script approach and using cmd.script function in the salt state file.
+Locale region format example on how to adjust configuration of minion with Windows OS, there is reg specific module that will help you getting that running via Salt (see example at bottom of common.sls). I've also got it working with PowerShell script approach and cmd.script function in the state file.
 
 > ⚠ To make Scheduler, Beacon, Reactor trio working: salt-minion must use 'Log On' service property and fill in the credentials into This account option. If you don't set that then beacon will not work and consequently reactor as well.
  
-Scheduler's job starts the powershell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
+Scheduler's job starts the PowerShell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
 
 ## Salt project official documentation used for this setup 
 Scheduler:
@@ -29,14 +29,16 @@ Reactor:
 -  https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-userlocale
 
 ## How to use
-I set structure of directories but we all most likely have different setups, there are parts missing potentially. I made sure essentials for scheduler, beacon and reactor are there and they help you understand where should they be configured.
+I set structure of directories but we all most likely have different setups, there are parts missing as well. I made sure essentials for scheduler, beacon and reactor are shared in the repository, purpose of this repository is to help you understand where should they be configured.
+
+> Ensure that you backed up your existing setup before you start with anything
 
 ![scheduler-beacon-reactor_LeaDevelop.png](readme-assets/scheduler-beacon-reactor_LeaDevelop.png)
 
 ## Verify all is running as expected
 1. On salt master start `salt-run state.event pretty=true`
 2. To test you can set scheduler and beacon interval to 20s both
-3. On the minion set locale region format to a value that is not expected
+3. On the minion, set the locale region format to a value that is not expected
 4. Modify file in the Beacon watched directory
 5. Watch the state.event you'll see scheduler job first, following beacon and reactor
 
@@ -46,7 +48,7 @@ I set structure of directories but we all most likely have different setups, the
 > Tested (21.04.2025) on minion, which was based on version: [3007.1](https://docs.saltproject.io/en/latest/topics/releases/3007.1.html)
 
 ## Credits
-Saltstack is available at: https://github.com/saltstack/salt / https://www.saltprojectstore.io <br>
+Saltstack is available at: https://github.com/saltstack/salt / https://saltproject.io/ <br>
 License: https://github.com/saltstack/salt?tab=Apache-2.0-1-ov-file <br>
 Kudos to Salstack Windows workgroup for helping me out through this journey!<br>
 PowerShell scripts are my own creation.
