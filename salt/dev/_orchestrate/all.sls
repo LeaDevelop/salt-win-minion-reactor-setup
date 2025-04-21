@@ -33,7 +33,7 @@ restart:
     - tgt_type: nodegroup
     - saltenv: {{ current_env }}
     - sls:
-      - saltproject.windows.restart-minion
+      - saltproject.windows.restart_minion
 
 {% set expected_minions = salt.saltutil.runner('cache.mine', tgt=current_env,tgt_type='nodegroup').keys() %}
 {% for minion_id in expected_minions %}
