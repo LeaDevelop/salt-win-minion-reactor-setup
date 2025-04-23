@@ -1,24 +1,61 @@
 # Salt - Windows minion reactor setup with scheduler and beacon
 
-Setup is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation.
+This is an example for Salt minions with MS Windows OS and configured scheduler, beacon and reactor.
 
-Locale region format example on how to adjust configuration of minion with Windows OS, there is reg specific module that will help you getting that running via Salt (see example at bottom of common.sls). I've also got it working with PowerShell script approach and cmd.script function in the state file.
+The configuration will be checking whether region and regional have set expected valued. For example, I used dashboards that were based on log data, timestamps will differentiate based on region format, so I wanted to have additional check on provisioned machines.
 
-> ⚠ To make Scheduler, Beacon, Reactor trio working: salt-minion must use 'Log On' service property and fill in the credentials into This account option. If you don't set that then beacon will not work and consequently reactor as well.
- 
-Scheduler's job starts the PowerShell script that checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
+I found two ways _the Salt way_ - use `reg` module (see example at bottom of common.sls) or *the Windows way*, using PowerShell script and `cmd.script` function in the salt state file. This document will show the example with PowerShell since `reg` module docs you'll find in official Salt docs.
 
-## Salt project official documentation used for this setup 
+The setup I used is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation, I listed all relevant documentation in section below.
+
+## Summary and dependencies
+
+Scheduler's job starts the PowerShell script. The script checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
+
+Scheduler triggers a check for current status and logs it's entry. Beacon (Watchdog) watched the directory and when there is file modified in designed directory, reactor will trigger a correction script and adjust region format to expected value.
+
+If there is wrong value that will be noted in the .log file, which is stored to specific directory. That directory is monitored by the Watchdog. Reactor will follow with correction state file that has instructions to correct the value.
+
+![scheduler-beacon-reactor_LeaDevelop.png](readme-assets/scheduler-beacon-reactor_LeaDevelop.png)
+
+### Prerequisites
+
+You have Salt master installed and configured, Windows minion is able to ping master server with success.
+
+> ⚠ To make Scheduler, Beacon, Reactor trio working: salt-minion must use 'Log On' service property and fill in the credentials into This account option. If you don't set that, it will result beacon not working and consequently reactor not working as well.
+
+## How to use
+> ⚠ Ensure that you backed up your existing setup before you start with anything
+>
+> I made sure essentials for scheduler, beacon and reactor are shared in the repository, purpose of this repository is to help you understand where should they be configured. We all have structure different, the only file placement that matters is one also described in the image. Reactor config must be set on master server while beacon config must be set on the minion along with scheduler.
+
+
+- On salt master start `salt-run state.event pretty=true`
+- To test you can set scheduler and beacon interval to 20s both
+- On the minion, set the locale region format to a value that is not expected
+
+1. Reactor config is configured - `master/master.d/reactor.conf`
+2. Beacon config is set and applied - `salt/dev/saltproject/windows/conf/minion.d/beacons.conf`
+3. Schedule config set and applied - `salt/dev/saltproject/windows/conf/minion.d/_schedule.conf`
+4. Master service and minion service were both restarted. ⚠ If you forget to restart it won't work.
+5. Watch the `state.event` you'll see scheduler job first, following beacon and reactor
+
+ℹ Help yourself also with the minion log that is by default located in:
+`C:\ProgramData\Salt Project\Salt\var\log\salt\minion`
+
+> Tested (21.04.2025) on minion, which was based on version: [3007.1](https://docs.saltproject.io/en/latest/topics/releases/3007.1.html)
+
+## Salt project official documentation used for this setup
 Scheduler:
 
 - https://docs.saltproject.io/salt/user-guide/en/latest/topics/scheduler.html <br>
 - https://docs.saltproject.io/en/latest/ref/states/all/salt.states.schedule.html<br>
 
-Beacons: 
+Beacons:
 - https://docs.saltproject.io/salt/user-guide/en/latest/topics/beacons.html <br>
 - https://docs.saltproject.io/en/latest/ref/states/all/salt.states.beacon.html <br>
 
-Reactor: 
+Reactor:
 - https://docs.saltproject.io/salt/user-guide/en/latest/topics/reactors.html <br>
 - https://docs.saltproject.io/en/latest/topics/reactor/<br>
 
@@ -27,25 +64,6 @@ Reactor:
 - https://docs.saltproject.io/en/latest/ref/states/all/salt.states.cmd.html
 -  https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
 -  https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-userlocale
-
-## How to use
-I set structure of directories but we all most likely have different setups, there are parts missing as well. I made sure essentials for scheduler, beacon and reactor are shared in the repository, purpose of this repository is to help you understand where should they be configured.
-
-> Ensure that you backed up your existing setup before you start with anything
-
-![scheduler-beacon-reactor_LeaDevelop.png](readme-assets/scheduler-beacon-reactor_LeaDevelop.png)
-
-## Verify all is running as expected
-1. On salt master start `salt-run state.event pretty=true`
-2. To test you can set scheduler and beacon interval to 20s both
-3. On the minion, set the locale region format to a value that is not expected
-4. Modify file in the Beacon watched directory
-5. Watch the state.event you'll see scheduler job first, following beacon and reactor
-
-ℹ Help yourself also with the minion log that is by default located in:
-`C:\ProgramData\Salt Project\Salt\var\log\salt\minion`
-
-> Tested (21.04.2025) on minion, which was based on version: [3007.1](https://docs.saltproject.io/en/latest/topics/releases/3007.1.html)
 
 ## Credits
 Saltstack is available at: https://github.com/saltstack/salt / https://saltproject.io/ <br>
