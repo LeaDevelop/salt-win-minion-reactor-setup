@@ -2,7 +2,7 @@
 
 This is an example for Salt minions with MS Windows OS and configured scheduler, beacon and reactor.
 
-The configuration will be checking whether region and regional have set expected valued. For example, I used dashboards that were based on log data, timestamps will differentiate based on region format, so I wanted to have additional check on provisioned machines.
+The configuration will be checking whether region and regional format have set expected valued. For example, I used dashboards that were based on log data, timestamps will differentiate based on region format, so I wanted to have additional check on provisioned machines.
 
 I found two ways _the Salt way_ - use `reg` module (see example at bottom of common.sls) or *the Windows way*, using PowerShell script and `cmd.script` function in the salt state file. This document will show the example with PowerShell since `reg` module docs you'll find in official Salt docs.
 
