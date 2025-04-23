@@ -62,8 +62,8 @@ Reactor:
 ## Other useful links:
 - https://docs.saltproject.io/en/latest/ref/modules/all/salt.modules.reg.html
 - https://docs.saltproject.io/en/latest/ref/states/all/salt.states.cmd.html
--  https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
--  https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-userlocale
+- https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
+- https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-international-core-userlocale
 
 ## Credits
 Saltstack is available at: https://github.com/saltstack/salt / https://saltproject.io/ <br>
