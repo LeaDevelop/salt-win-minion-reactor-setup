@@ -1,20 +1,20 @@
 # Salt - Windows minion reactor setup with scheduler and beacon
 
-This is an example for Salt minions with MS Windows OS and configured scheduler, beacon and reactor.
+This example demonstrates Salt minions with Windows OS that have configured scheduler, beacon and reactor.
 
-The configuration will be checking whether region and regional format have set expected valued. For example, I used dashboards that were based on log data, timestamps will differentiate based on region format, so I wanted to have additional check on provisioned machines.
+The configuration checks whether region and regional format settings have the expected values. For example, I used dashboards that were based on log data where timestamps differ based on region format, so I wanted an additional check on provisioned machines.
 
-I found two ways _the Salt way_ - use `reg` module (see example at bottom of common.sls) or *the Windows way*, using PowerShell script and `cmd.script` function in the salt state file. This document will show the example with PowerShell since `reg` module docs you'll find in official Salt docs.
+I found two approaches: _the Salt way_ - using the `reg` module (see blocks at bottom of common.sls), or *the Windows way*, using PowerShell script with the `cmd.script` function in the salt state file. This document demonstrates the PowerShell approach, as `reg` module documentation is already available in the official Salt docs.
 
-The setup I used is based on official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation, I listed all relevant documentation in section below.
+The setup follows official [Salt user guide](https://docs.saltproject.io/salt/user-guide/en/latest/index.html) documentation, with all relevant documentation in section below.
 
 ## Summary and dependencies
 
-Scheduler's job starts the PowerShell script. The script checks and logs current state of locale region format on the minion. Depending on the result it will send log file in designated directories `status / corrected / wrong`
+The scheduler job starts a PowerShell script, that checks and logs current state of locale region format on the minion. Based on the results, it will send log file in designated directories `status / corrected / wrong`
 
-Scheduler triggers a check for current status and logs it's entry. Beacon (Watchdog) watched the directory and when there is file modified in designed directory, reactor will trigger a correction script and adjust region format to expected value.
+The scheduler triggers a check for current status and logs it's entry. The beacon (Watchdog) monitors these directories and when there is file modified in designated directory, the reactor triggers a correction script to adjust region format to the expected value.
 
-If there is wrong value that will be noted in the .log file, which is stored to specific directory. That directory is monitored by the Watchdog. Reactor will follow with correction state file that has instructions to correct the value.
+If incorrect value is detected, it's recorded in the .log file stored in a specific directory that's monitored by the beacon (Watchdog). The reactor then executes a correction state file containing instructions to set the correct value.
 
 ![scheduler-beacon-reactor_LeaDevelop.png](readme-assets/scheduler-beacon-reactor_LeaDevelop.png)
 
